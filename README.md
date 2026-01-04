@@ -50,7 +50,7 @@ Follow these steps to set up the project locally.
 
 ### Prerequisites
 *   Node.js 18+ installed
-*   MongoDB installed locally or a MongoDB Atlas connection string
+*   **MongoDB**: You must have a MongoDB instance acting running (either a local installation or a cloud Atlas cluster) for the connection string to work.
 
 ### Installation
 
@@ -127,12 +127,43 @@ src/
 
 ## 🤝 Contributing
 
-Contributions are welcome!
-1.  Fork the project.
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4.  Push to the branch (`git push origin feature/AmazingFeature`).
-5.  Open a Pull Request.
+
+### 1. Fork & Clone
+1.  **Fork** the repo on GitHub.
+2.  **Clone** your fork:
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/bloom-quest.git
+    cd bloom-quest
+    npm install
+    ```
+
+### 2. Create a Branch
+```bash
+git checkout -b feature/your-feature-name
+```
+
+### 3. Make Changes
+*   Keep changes focused and coherent (one feature/fix per PR is ideal).
+*   Follow existing patterns for:
+    *   **API Routes**: in `src/app/api/**`.
+    *   **Database Access**: use `dbConnect` from `src/lib/db.ts` and Mongoose models in `src/models/*.ts`.
+    *   **UI Components & Styling**: use Tailwind CSS and customized UI components in `src/components/ui/`.
+*   If you add a new model or field:
+    *   Update `src/types/index.ts` to reflect the new interface.
+    *   Update the Mongoose schema in `src/models/`.
+
+### 4. Lint & Typecheck
+Ideally, run the linter before committing to ensure code quality:
+```bash
+npm run lint
+```
+Fix any reported issues before opening a PR.
+
+### 5. Open a Pull Request
+When opening a PR, please include:
+*   A clear title (e.g., `feat: add leaderboard`, `fix: timezone bug`).
+*   A short description of:
+    *   What you changed.
+    *   How to test it (paths, steps, relevant env vars).
 
 ---
-
