@@ -6,6 +6,7 @@ export type ChallengeDocument = IChallenge & Document;
 const ChallengeSchema = new Schema<ChallengeDocument>({
     date: { type: String, required: true, unique: true }, // One challenge per day
     description: { type: String, required: true },
+    category: { type: String, required: true },
     difficulty: { type: String, enum: ['easy', 'medium', 'hard'], default: 'medium' },
     xp: { type: Number, default: 50 },
 });

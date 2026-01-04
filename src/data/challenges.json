@@ -1,0 +1,302 @@
+[
+    {
+        "id": 1,
+        "text": "Drink 8 glasses of water",
+        "category": "health",
+        "difficulty": "easy"
+    },
+    {
+        "id": 2,
+        "text": "Take a 15-minute brisk walk",
+        "category": "health",
+        "difficulty": "easy"
+    },
+    {
+        "id": 3,
+        "text": "Stretch for 10 minutes",
+        "category": "health",
+        "difficulty": "easy"
+    },
+    {
+        "id": 4,
+        "text": "Eat a piece of fruit with breakfast",
+        "category": "health",
+        "difficulty": "easy"
+    },
+    {
+        "id": 5,
+        "text": "Do 20 push-ups",
+        "category": "health",
+        "difficulty": "medium"
+    },
+    {
+        "id": 6,
+        "text": "Try a new healthy recipe",
+        "category": "health",
+        "difficulty": "medium"
+    },
+    {
+        "id": 7,
+        "text": "Prepare your meals for tomorrow",
+        "category": "health",
+        "difficulty": "medium"
+    },
+    {
+        "id": 8,
+        "text": "Run or jog for 30 minutes",
+        "category": "health",
+        "difficulty": "hard"
+    },
+    {
+        "id": 9,
+        "text": "Perform a HIIT workout",
+        "category": "health",
+        "difficulty": "hard"
+    },
+    {
+        "id": 10,
+        "text": "No sugar for the entire day",
+        "category": "health",
+        "difficulty": "hard"
+    },
+    {
+        "id": 11,
+        "text": "Meditate for 5 minutes",
+        "category": "mindfulness",
+        "difficulty": "easy"
+    },
+    {
+        "id": 12,
+        "text": "Write down 3 things you are grateful for",
+        "category": "mindfulness",
+        "difficulty": "easy"
+    },
+    {
+        "id": 13,
+        "text": "Practice deep breathing for 2 minutes",
+        "category": "mindfulness",
+        "difficulty": "easy"
+    },
+    {
+        "id": 14,
+        "text": "Observe a plant or nature for 5 minutes",
+        "category": "mindfulness",
+        "difficulty": "easy"
+    },
+    {
+        "id": 15,
+        "text": "Write a journal entry about your day",
+        "category": "mindfulness",
+        "difficulty": "medium"
+    },
+    {
+        "id": 16,
+        "text": "Do a digital detox for 2 hours",
+        "category": "mindfulness",
+        "difficulty": "medium"
+    },
+    {
+        "id": 17,
+        "text": "Listen to a guided mindfulness podcast",
+        "category": "mindfulness",
+        "difficulty": "medium"
+    },
+    {
+        "id": 18,
+        "text": "Go for a mindful walk without any electronics",
+        "category": "mindfulness",
+        "difficulty": "hard"
+    },
+    {
+        "id": 19,
+        "text": "Spend 1 hour in complete silence",
+        "category": "mindfulness",
+        "difficulty": "hard"
+    },
+    {
+        "id": 20,
+        "text": "Practice 30 minutes of yoga",
+        "category": "mindfulness",
+        "difficulty": "hard"
+    },
+    {
+        "id": 21,
+        "text": "Organize your workspace for 10 minutes",
+        "category": "productivity",
+        "difficulty": "easy"
+    },
+    {
+        "id": 22,
+        "text": "Make a to-do list for the day",
+        "category": "productivity",
+        "difficulty": "easy"
+    },
+    {
+        "id": 23,
+        "text": "Tidy up one room in your house",
+        "category": "productivity",
+        "difficulty": "easy"
+    },
+    {
+        "id": 24,
+        "text": "Set a goal for the week",
+        "category": "productivity",
+        "difficulty": "easy"
+    },
+    {
+        "id": 25,
+        "text": "Focus on one task for 25 minutes (Pomodoro)",
+        "category": "productivity",
+        "difficulty": "medium"
+    },
+    {
+        "id": 26,
+        "text": "Clear out 20 unread emails",
+        "category": "productivity",
+        "difficulty": "medium"
+    },
+    {
+        "id": 27,
+        "text": "Read 10 pages of a non-fiction book",
+        "category": "productivity",
+        "difficulty": "medium"
+    },
+    {
+        "id": 28,
+        "text": "Complete a task you've been procrastinating on",
+        "category": "productivity",
+        "difficulty": "hard"
+    },
+    {
+        "id": 29,
+        "text": "Plan your entire upcoming week",
+        "category": "productivity",
+        "difficulty": "hard"
+    },
+    {
+        "id": 30,
+        "text": "Learn a new skill for 45 minutes",
+        "category": "productivity",
+        "difficulty": "hard"
+    },
+    {
+        "id": 31,
+        "text": "Compliment a friend or colleague",
+        "category": "social",
+        "difficulty": "easy"
+    },
+    {
+        "id": 32,
+        "text": "Send a 'thank you' message to someone",
+        "category": "social",
+        "difficulty": "easy"
+    },
+    {
+        "id": 33,
+        "text": "Hold the door open for someone",
+        "category": "social",
+        "difficulty": "easy"
+    },
+    {
+        "id": 34,
+        "text": "Smile at 3 strangers",
+        "category": "social",
+        "difficulty": "easy"
+    },
+    {
+        "id": 35,
+        "text": "Call a family member just to chat",
+        "category": "social",
+        "difficulty": "medium"
+    },
+    {
+        "id": 36,
+        "text": "Help someone with a small task",
+        "category": "social",
+        "difficulty": "medium"
+    },
+    {
+        "id": 37,
+        "text": "Engage in a conversation with a new person",
+        "category": "social",
+        "difficulty": "medium"
+    },
+    {
+        "id": 38,
+        "text": "Organize a small get-together or coffee date",
+        "category": "social",
+        "difficulty": "hard"
+    },
+    {
+        "id": 39,
+        "text": "Volunteer for an hour",
+        "category": "social",
+        "difficulty": "hard"
+    },
+    {
+        "id": 40,
+        "text": "Write a heartfelt letter to a loved one",
+        "category": "social",
+        "difficulty": "hard"
+    },
+    {
+        "id": 41,
+        "text": "Pick up 3 pieces of litter",
+        "category": "environment",
+        "difficulty": "easy"
+    },
+    {
+        "id": 42,
+        "text": "Use a reusable water bottle all day",
+        "category": "environment",
+        "difficulty": "easy"
+    },
+    {
+        "id": 43,
+        "text": "Turn off lights when leaving a room",
+        "category": "environment",
+        "difficulty": "easy"
+    },
+    {
+        "id": 44,
+        "text": "Unplug electronics not in use",
+        "category": "environment",
+        "difficulty": "easy"
+    },
+    {
+        "id": 45,
+        "text": "Walk or bike instead of driving for one trip",
+        "category": "environment",
+        "difficulty": "medium"
+    },
+    {
+        "id": 46,
+        "text": "Avoid using single-use plastics today",
+        "category": "environment",
+        "difficulty": "medium"
+    },
+    {
+        "id": 47,
+        "text": "Plant a seed or take care of a plant",
+        "category": "environment",
+        "difficulty": "medium"
+    },
+    {
+        "id": 48,
+        "text": "Start a small compost bin",
+        "category": "environment",
+        "difficulty": "hard"
+    },
+    {
+        "id": 49,
+        "text": "Research a sustainable habit to adopt",
+        "category": "environment",
+        "difficulty": "hard"
+    },
+    {
+        "id": 50,
+        "text": "Cook a plant-based meal",
+        "category": "environment",
+        "difficulty": "hard"
+    }
+]

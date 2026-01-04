@@ -47,6 +47,8 @@ export interface IChallenge {
     _id: string;
     date: string;
     description: string;
+    category: string;
     difficulty: 'easy' | 'medium' | 'hard';
     xp: number;
 }
+

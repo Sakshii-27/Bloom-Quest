@@ -3,14 +3,17 @@ import dbConnect from '@/lib/db';
 import Challenge from '@/models/Challenge';
 import { getSession } from '@/lib/auth';
 
-// Simple challenge generator for demo
-const CHALLENGES = [
-    "Drink 8 glasses of water",
-    "Take a 10 minute walk",
-    "Read 5 pages of a book",
-    "Meditate for 5 minutes",
-    "Compliment someone today",
-];
+import challengesData from '@/data/challenges.json';
+
+const DAY_CATEGORIES: Record<number, string> = {
+    1: 'mindfulness', // Monday
+    2: 'productivity', // Tuesday
+    3: 'health',      // Wednesday
+    4: 'social',      // Thursday
+    5: 'health',      // Friday
+    6: 'social',      // Saturday
+    0: 'environment', // Sunday
+};
 
 export async function GET() {
     const session = await getSession();
@@ -19,18 +22,31 @@ export async function GET() {
     await dbConnect();
 
     // Get today's date YYYY-MM-DD
-    const today = new Date().toISOString().split('T')[0];
+    const todayDate = new Date();
+    const today = todayDate.toISOString().split('T')[0];
 
     let challenge = await Challenge.findOne({ date: today });
 
     if (!challenge) {
-        // Generate one if missing (lazy generation)
-        const desc = CHALLENGES[Math.floor(Math.random() * CHALLENGES.length)];
+        // Pick a challenge based on the day of the week
+        const dayOfWeek = todayDate.getDay();
+        const category = DAY_CATEGORIES[dayOfWeek];
+        
+        const filteredChallenges = challengesData.filter(c => c.category === category);
+        const pool = filteredChallenges.length > 0 ? filteredChallenges : challengesData;
+        
+        const selected = pool[Math.floor(Math.random() * pool.length)];
+
+        // XP based on difficulty
+        const xpMap = { easy: 30, medium: 50, hard: 100 };
+        const xp = xpMap[selected.difficulty as keyof typeof xpMap] || 50;
+
         challenge = await Challenge.create({
             date: today,
-            description: desc,
-            difficulty: 'medium',
-            xp: 50
+            description: selected.text,
+            category: selected.category,
+            difficulty: selected.difficulty,
+            xp: xp
         });
     }
 
