@@ -1,9 +1,8 @@
-# 🌸 BloomQuest
+# BloomQuest
 
 > **Gamify your life, grow your garden.**
-> A full-stack gamified habit tracker built with Next.js 16, React 19, MongoDB, and Tailwind CSS.
+> A full-stack gamified habit tracker built with Next.js 16, MongoDB, and Tailwind CSS.
 
-![BloomQuest Banner](/public/plants/garden_bg.png)
 
 ## 📖 Project Overview
 
