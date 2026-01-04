@@ -19,6 +19,28 @@
 
 ---
 
+## 🔄 Game Loop & Flow
+
+The core loop of BloomQuest is designed to reinforce positive habits through immediate visual rewards.
+
+```mermaid
+graph LR
+    A[User] -->|Completes Habit| B(Earn XP + Coins)
+    A -->|Focus Session| B
+    B -->|XP| C{Plant Growth}
+    B -->|Coins| D[Shop]
+    C -->|Level Up| E[New Plant Stages]
+    D -->|Buy Items| F[Customize Garden]
+    F -->|Visual Reward| A
+```
+
+1.  **Action**: User completes real-world tasks (Habits, Focus, Challenges).
+2.  **Reward**: Immediate feedback via **XP** (Growth) and **Coins** (Currency).
+3.  **Investment**: Coins are spent in the **Shop** to buy Pots, Decor, and Backgrounds.
+4.  **Progression**: XP levels up the **Plant**, changing its visual stage (Seed → Sprout → Flower).
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Core
