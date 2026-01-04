@@ -179,13 +179,12 @@ Ideally, run the linter before committing to ensure code quality:
 ```bash
 npm run lint
 ```
-Fix any reported issues before opening a PR.
+Make sure to resolve any errors.
 
 ### 5. Open a Pull Request
-When opening a PR, please include:
-*   A clear title (e.g., `feat: add leaderboard`, `fix: timezone bug`).
-*   A short description of:
-    *   What you changed.
-    *   How to test it (paths, steps, relevant env vars).
+Open a Pull Request with the following:
+*  **Semantic Title**: Use standard prefixes (e.g., `feat:`, `fix:`, `docs:`).
+*   **Summary**: A brief explanation of the changes and testing steps.
+*   **Screenshots**: (Optional) For UI changes, images are helpful!
 
 ---
