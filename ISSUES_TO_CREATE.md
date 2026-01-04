@@ -162,5 +162,228 @@ Implement a system to handle progression past the initial stages.
 **Area**
 - `src/app/api/habits/[id]/complete/route.ts`
 - `src/components/dashboard/DashboardView.tsx`
+
+---
+
+## Issue 6: Refactor Daily Stats 🔴 (Advanced)
+
+**Title:**
+`refactor: move dailyStats to separate MongoDB collection`
+
+**Label:** `refactor`, `backend`, `performance`
+
+**Body:**
+```markdown
+**Description**
+Currently, `dailyStats` is an array stored *inside* the `User` document. As a user plays for months/years, this array will grow indefinitely. This risks hitting the MongoDB 16MB document size limit and slows down fetching the User object.
+
+**Goal**
+Refactor the database schema to store stats in a separate `DailyStat` collection.
+
+**Tasks**
+- Create a new Mongoose model `DailyStat` (`userId`, `date`, `xpGained`, `habitsCompleted`).
+- Update `src/app/api/stats/route.ts` to query this new collection instead of `user.dailyStats`.
+- Update `src/app/dashboard/page.tsx` aggregation logic.
+- Ensure the Frontend still receives the data in the same format (or update Frontend to match).
+
+**Area**
+- `src/models/User.ts`
+- `src/models/DailyStat.ts` (New)
+- `src/app/api/stats/route.ts`
+
+---
+
+## Issue 7: Polish Garden Edit UI 🎨 (Design)
+
+**Title:**
+`design: improve visual appeal of garden edit mode`
+
+**Label:** `design`, `frontend`, `ui`
+
+**Body:**
+```markdown
+**Description**
+When you enter "Edit Mode" in the Garden (`src/app/garden/page.tsx`), the inventory dock at the bottom looks very basic. It's just a scrolling row of buttons with no clear structure.
+
+**Goal**
+Redesign the inventory dock to be more visually appealing and user-friendly.
+
+**Ideas**
+- **Tabs**: Group items by "Pots", "Decor", and "Themes".
+- **Glassmorphism**: Use a blurred background with rounded corners for the dock.
+- **Animations**: Add slide-up animations when the dock opens.
+- **Drag Preview**: Show a ghost image of the item while dragging it.
+
+**Area**
+- `src/app/garden/page.tsx`
+
+---
+
+## Issue 8: Achievements System 🏆 (Intermediate)
+
+**Title:**
+`feat: implement achievements and badging system`
+
+**Label:** `enhancement`, `gamification`, `backend`
+
+**Body:**
+```markdown
+**Description**
+Gamification needs more than just coins. We want to reward specific behaviors (consistency, focus, collection) with permanent "Badges" on the user profile.
+
+**Goal**
+Create an extensible Achievements system.
+
+**Tasks**
+- **Database**: Add `badges` array to `User` schema (e.g., `[{ id: 'early_bird', date: Date }]`).
+- **Logic**: Create a helper function `checkAchievements(user)` called after habit completion or focus sessions.
+- **Badges to Implement**:
+  - *Early Bird*: Complete a habit before 8 AM.
+  - *Zen Master*: Accumulate 100 total minutes of focus time.
+  - *Big Spender*: Buy 5 items from the shop.
+- **UI**: Add a "Trophy Case" section to the Stats page (`src/app/stats/page.tsx`).
+
+**Area**
+- `src/models/User.ts`
+- `src/app/stats/page.tsx`
+- `src/lib/achievements.ts` (New)
+```
+
+---
+
+## Issue 9: Plant Withering (Loss Aversion) 🍂 (Advanced)
+
+**Title:**
+`feat: implement plant withering mechanics`
+
+**Label:** `enhancement`, `gamification`, `backend`
+
+**Body:**
+```markdown
+**Description**
+Games are stickier when you have something to *lose*. If a user hasn't logged in for a few days, their plant should visibly show it!
+
+**Goal**
+Implement a decay system based on `lastActiveDate`.
+
+**Tasks**
+- **Backend**: Update `src/models/User.ts` logic (or a cron job) to check `lastActiveDate`.
+- **Logic**: If `Date.now() - lastActiveDate > 3 days`, apply "Withered" state.
+- **Penalty**: Deduct 50 XP per day of inactivity (optional: or just stop growth).
+- **Frontend**: Add a visual overlay (brown filter or drooping animation) when state is 'withered'.
+
+**Area**
+- `src/models/User.ts`
+- `src/components/plant/DynamicPlant.tsx`
+
+---
+
+## Issue 10: Timezone Reset Bug 🐛 (Bug)
+
+**Title:**
+`fix: habits reset at UTC midnight instead of local time`
+
+**Label:** `bug`, `backend`
+
+**Body:**
+```markdown
+**Description**
+Currently, the daily stats and habit completion logic relies on `new Date().toISOString().split('T')[0]`. This uses **UTC** time.
+For users in India (IST), "Tomorrow" starts at 5:30 AM. If they complete a habit at 1 AM, it counts for the *previous* day.
+
+**Goal**
+Store the user's timezone (e.g., `Asia/Kolkata`) in their profile and use `date-fns-tz` to interpret dates correctly.
+
+**Tasks**
+- [ ] Add `timezone` field to `User` model (default 'UTC').
+- [ ] Detect user timezone on frontend (Intl API) and send to backend on login/register.
+- [ ] Update `src/app/api/habits/[id]/complete/route.ts` to use `toZonedTime(now, user.timezone)`.
+
+**Area**
+- `src/models/User.ts`
+- `src/app/api/habits/[id]/complete/route.ts`
+
+---
+
+## Issue 11: Shop Race Condition 🐛 (Bug)
+
+**Title:**
+`fix: prevent double-spending in shop using atomic updates`
+
+**Label:** `bug`, `backend`, `security`
+
+**Body:**
+```markdown
+**Description**
+The current Shop Buy logic (`src/app/api/shop/buy/route.ts`) uses a `findById` -> `check balance` -> `user.save()` pattern.
+This is vulnerable to **Race Conditions**. If a user sends two requests simultaneously (e.g., clicking 'Buy' on two different tabs), they could spend the same coins twice.
+
+**Goal**
+Refactor the purchase logic to use MongoDB **Atomic Operators** (`$inc`, `$push`).
+
+**Tasks**
+- Replace the manual `save()` logic with `User.findOneAndUpdate`.
+- Logic: `User.updateOne({ _id: userId, coins: { $gte: price } }, { $inc: { coins: -price }, $push: { inventory: itemId } })`
+- Ensure the API handles the case where the update fails (i.e., user didn't have enough money or race condition occurred).
+
+**Area**
+- `src/app/api/shop/buy/route.ts`
+
+---
+
+## Issue 12: Inaccessible Plant Component ♿ (Bug/Frontend)
+
+**Title:**
+`fix: add aria-labels to dynamic plant component`
+
+**Label:** `bug`, `frontend`, `accessibility`
+
+**Body:**
+```markdown
+**Description**
+The main plant component (`src/components/plant/DynamicPlant.tsx`) is built entirely using `<div>`s for visual styling (CSS art).
+Screen readers (VoiceOver, NVDA) verify this as empty space. A blind user has no idea what their plant looks like, what stage it is at, or what items are equipped.
+
+**Goal**
+Make the plant accessible to screen readers.
+
+**Tasks**
+- Add `role="img"` to the main container.
+- Add a dynamic `aria-label` that describes the scene (e.g., "A blooming sunflower in a neon pot with a gnome decor").
+- Ensure all decorative elements (leaves, petals) are hidden from the accessibility tree (`aria-hidden="true"`).
+
+**Area**
+- `src/components/plant/DynamicPlant.tsx`
+```
+
+---
+
+## Issue 13: Dynamic Challenge System 🎲 (Feature)
+
+**Title:**
+`feat: dynamic community-sourced daily challenges`
+
+**Label:** `enhancement`, `good first issue`
+
+**Body:**
+```markdown
+**Description**
+Currently, the Daily Challenge (`src/app/api/challenges/today/route.ts`) picks from a hardcoded list of only 5 items (e.g., "Drink water"). This gets repetitive fast.
+
+**Goal**
+Move challenges to a JSON data file and add categories.
+
+**Tasks**
+- [ ] Create `src/data/challenges.json` with a list of 50+ challenges (Community Sourced).
+- [ ] Structure: `[{ id: 1, text: "...", category: "health", difficulty: "easy" }]`.
+- [ ] Update the API to pick a random challenge from this file.
+- [ ] (Bonus) Pick a challenge based on the day of the week (e.g., "Mindful Monday").
+
+**Area**
+- `src/app/api/challenges/today/route.ts`
+- `src/data/challenges.json` (New)
 ```
 ```
+```
+```
+
